@@ -1,17 +1,23 @@
 Vue.component('roulette', {
     template: `
-        <div>
+        <section class="roulette">
             <h2>How to brew your next coffee?</h2>
             <button 
                 type="button"
                 @click="roll">
                 Roll
             </button>
-            <div class='method-list' 
-                v-for="(method, index) in brewMethods">
-                <label :class="{'active': index === rollResult}">{{method}}</label>
+            <div class='method-ring'>
+                <div class='method-ring-item'
+                    v-for="(method, index) in brewMethods"
+                    :style="{
+                        transform: 'rotate(' + 360/brewMethods.length * (index+1) + 'deg)',
+                        backgroundColor: 'var(--orange-'+ (index+1) + '00)'
+                    }">
+                    <label :class="{'active': index === rollResult}">{{method}}</label>
+                </div>
             </div>
-        </div>
+        </section>
     `,
     data: () => ({
         rollResult: -1

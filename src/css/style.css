@@ -1,3 +1,15 @@
+@import url(./variables.css);
+@import url(./global.css);
+@import url(./buttons.css);
+@import url(./roulette-component.css);
+@import url(./list-editor-component.css);
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .active {
-    color: red;
+  color: red;
 }
