@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Brew Roulette
+    </title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="icon"
+          type="image/x-icon"
+          href="./favicon.png"> -->
+</head>
+
+<body>
+    <div id="app">
+        <h1>Welcome to Brew Roulette!</h1>
+        <roulette :brew-methods="brewMethods">
+        </roulette>
+        <list-editor :brew-methods="brewMethods"
+                     @update-list="saveList($event)">
+        </list-editor>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="js/roulette-component.js"></script>
+<script src="js/list-editor-component.js"></script>
+<script src="js/app.js"></script>
+
+</html>
