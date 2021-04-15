@@ -15,6 +15,7 @@ Vue.component('list-editor', {
             <div class="new-method">
                 <input type="text"
                     v-model="newMethod"
+                    @keydown.enter="newMethod && addMethod()"
                     placeholder="Add new method"/>
                 <button type="button"
                     @click="addMethod"
