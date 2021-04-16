@@ -4,11 +4,14 @@ Vue.component('roulette', {
             <h2>How to brew your next coffee?</h2>
             <button 
                 type="button"
+                class="btn-roll"
+                :disabled="rollDisabled"
                 @click="roll">
                 Roll
             </button>
             <div class="method-ring"
                 :style="{
+                    transition: ringTransition,
                     transform: 'rotate(' + spinDegree + 'deg)'
                 }">
                 <div class="method-ring-item"
@@ -18,22 +21,31 @@ Vue.component('roulette', {
                         backgroundColor: 'rgba(0, 0, 0, 0.' + (index+1) + '5)',
                         clipPath: clipPathSting
                     }">
-                    <label :class="{'active': index === rollResult}">{{method}}</label>
+                    <label :class="{'active': index === rollResult}"
+                        :style="{
+                            transition: labelTransition
+                        }">
+                        {{method}}
+                    </label>
                 </div>
             </div>
         </section>
     `,
     data: () => ({
+        rollDisabled: false,
         rollResult: -1,
         spinDegree: 0,
         clipPathSting: '',
-        clipPathStringInner: '',
+        ringTransition: 'transform 3s ease-in-out',
+        labelTransition: 'all .2s ease-out'
     }),
     props: {
         brewMethods: Array
     },
     watch: {
         brewMethods() {
+            this.resetState();
+
             const getSectorPath = (x, y, outerDiameter, a1, a2) => {
                 const degtorad = Math.PI / 180;
                 const cr = outerDiameter / 2;
@@ -41,7 +53,7 @@ Vue.component('roulette', {
                 const cy1 = -Math.sin(degtorad * a2) * cr + y;
                 const cx2 = Math.cos(degtorad * a1) * cr + x;
                 const cy2 = -Math.sin(degtorad * a1) * cr + y;
-            
+
                 return `M${x} ${y} ${cx1} ${cy1} A${cr} ${cr} 0 0 1 ${cx2} ${cy2}Z`;
             }
 
@@ -49,14 +61,32 @@ Vue.component('roulette', {
             const y = 150;
             const r = 300;
             const angle = 360 / this.brewMethods.length;
-            this.clipPathStringInner = getSectorPath(x, y, r, -angle/2, angle/2);
-            this.clipPathSting = `path('${this.clipPathStringInner}')`;
+            this.clipPathSting = `path('${getSectorPath(x, y, r, -angle / 2, angle / 2)}')`;
         }
     },
     methods: {
+        resetState() {
+            this.ringTransition = 'all 0s';
+            this.labelTransition = 'all 0s';
+            this.spinDegree = 0;
+            this.rollResult = -1;
+        },
         roll() {
-            this.rollResult = Math.floor(Math.random() * (this.brewMethods.length));
-            this.spinDegree = 720;
+            let rollResult;
+            this.rollDisabled = true;
+            this.resetState();
+
+            setTimeout(() => {
+                rollResult = Math.floor(Math.random() * (this.brewMethods.length));
+                this.ringTransition = 'transform 3s ease-in-out';
+                this.spinDegree = 1080 - 360 / this.brewMethods.length * rollResult;
+            }, 100);
+
+            setTimeout(() => {
+                this.labelTransition = 'all .2s ease-out';
+                this.rollResult = rollResult;
+                this.rollDisabled = false;
+            }, 3100);
         }
     }
 });

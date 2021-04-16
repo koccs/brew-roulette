@@ -5,6 +5,18 @@ section.roulette {
 }
 
 .btn-roll {
+  margin-bottom: var(--space-lg);
+  font-size: 20px;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--orange-700);
+  border: 1px solid var(--yellow-800);
+  color: var(--yellow-200);
+  transition: all .3s ease-in-out;
+}
+
+.btn-roll:not(:disabled):hover{
+  background-color: var(--orange-600);
+  transform: scale(1.1);
 }
 
 .method-ring {
@@ -13,7 +25,6 @@ section.roulette {
   background-color: var(--yellow-600);
   border-radius: 50%;
   position: relative;
-  transition: transform 3s ease-in-out;
   overflow: hidden;
 }
 
@@ -43,5 +54,10 @@ section.roulette {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 1px;
-  padding-right: 20px;
+  padding: 3px 20px 0 0;
+}
+
+.method-ring-item > label.active {
+  color: var(--yellow-300);
+  transform: scale(1.1);
 }
