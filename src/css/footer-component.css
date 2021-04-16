@@ -1,0 +1,42 @@
+footer {
+  margin: 4rem 0 0;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  position: relative;
+}
+
+footer p {
+  text-indent: -0.25rem;
+}
+
+.fa-github-square,
+.fa-life-ring {
+  font-size: 2rem;
+  color: var(--orange-800);
+  cursor: pointer;
+}
+
+.fa-github-square:focus,
+.fa-life-ring:focus {
+  box-shadow: 1px 0 0.25rem 0 var(--orange-8700);
+}
+
+.help {
+  position: absolute;
+  right: 2rem;
+  top: -8rem;
+  height: 8rem;
+  font-size: 0.9rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.5)
+  );
+  max-width: 20rem;
+  text-align: justify;
+}

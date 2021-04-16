@@ -2,9 +2,10 @@
 @import url(./global.css);
 @import url(./buttons.css);
 @import url(./input.css);
+@import url(./background-component.css);
 @import url(./roulette-component.css);
 @import url(./list-editor-component.css);
-@import url(./background-component.css);
+@import url(./footer-component.css);
 
 main {
   display: flex;
@@ -17,14 +18,18 @@ main {
     rgba(255, 255, 255, 0.2)
   );
   margin: 2rem;
-  padding: 4rem;
+  padding: 1rem;
   border-radius: 2rem;
   z-index: 2;
   backdrop-filter: blur(0.5rem);
   box-shadow: 1px 1px 1rem 0 var(--orange-800);
 }
 
-@media screen and (min-width: 1000px) {
+h1 {
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 62.5rem) {
   main {
     width: 70vw;
   }
