@@ -8,26 +8,47 @@
     </title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+          href="css/style.css">
     <!-- <link rel="icon"
           type="image/x-icon"
           href="./favicon.png"> -->
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;500&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css"
+          integrity="sha512-OdEXQYCOldjqUEsuMKsZRj93Ht23QRlhIb8E/X0sbwZhme8eUw6g8q7AdxGJKakcBbv7+/PX0Gc2btf7Ru8cZA=="
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css"
+          integrity="sha512-apX8rFN/KxJW8rniQbkvzrshQ3KvyEH+4szT3Sno5svdr6E/CP0QE862yEeLBMUnCqLko8QaugGkzvWS7uNfFQ=="
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/regular.min.css"
+          integrity="sha512-Nqct4Jg8iYwFRs/C34hjAF5og5HONE2mrrUV1JZUswB+YU7vYSPyIjGMq+EAQYDmOsMuO9VIhKpRUa7GjRKVlg=="
+          crossorigin="anonymous" />
 </head>
 
 <body>
-    <div id="app" class="main-content">
-        <h1>Welcome to Brew Roulette!</h1>
-        <roulette :brew-methods="brewMethods">
-        </roulette>
-        <list-editor :brew-methods="brewMethods"
-                     @update-list="saveList($event)">
-        </list-editor>
+    <div id="app">
+        <background></background>
+        <main>
+            <h1>Welcome to Brew Roulette!</h1>
+            <roulette :brew-methods="brewMethods">
+            </roulette>
+            <list-editor :brew-methods="brewMethods"
+                         @update-list="saveList($event)">
+            </list-editor>
+        </main>
     </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="js/roulette-component.js"></script>
 <script src="js/list-editor-component.js"></script>
+<script src="js/background-component.js"></script>
 <script src="js/app.js"></script>
 
 </html>

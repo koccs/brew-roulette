@@ -1,11 +1,31 @@
 @import url(./variables.css);
 @import url(./global.css);
 @import url(./buttons.css);
+@import url(./input.css);
 @import url(./roulette-component.css);
 @import url(./list-editor-component.css);
+@import url(./background-component.css);
 
-.main-content {
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: calc(100vw - 4rem);
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.2)
+  );
+  margin: 2rem;
+  padding: 4rem;
+  border-radius: 2rem;
+  z-index: 2;
+  backdrop-filter: blur(0.5rem);
+  box-shadow: 1px 1px 1rem 0 var(--orange-800);
+}
+
+@media screen and (min-width: 1000px) {
+  main {
+    width: 70vw;
+  }
 }

@@ -4,35 +4,65 @@ Vue.component('list-editor', {
             <h2>Add or remove brew methods</h2>
             <div class='method-list'>
                 <div class='method-list-item'
-                    v-for="method in brewMethods">
+                    v-for="method in brewMethods"
+                    :key="method">
                     <label>{{method}}</label>
                     <button type="button"
+                        class="btn-icon"
                         @click="removeMethod(method)">
-                        X
+                        <i class="far fa-trash-alt"></i>
                     </button>
                 </div>
             </div>
             <div class="new-method">
-                <input type="text"
-                    v-model="newMethod"
-                    @keydown.enter="newMethod && addMethod()"
-                    placeholder="Add new method"/>
-                <button type="button"
-                    @click="addMethod"
-                    :disabled="!newMethod">
-                    Add
-                </button>
+                <div class="input-wrapper">
+                    <input type="text"
+                        v-model="newMethod"
+                        @keydown.enter="newMethod && addMethod()"
+                        :placeholder="placeholder"
+                        :disabled="this.disableAddition"
+                        :class="{'error': error}" />
+                    <button type="button"
+                        class="btn-primary"
+                        @click="addMethod"
+                        :disabled="!newMethod || this.disableAddition">
+                        Add
+                    </button>
+                </div>
+                <div class="method-error"
+                    v-if="error">
+                    {{error}}
+                </div>
             </div>
         </section>
     `,
     data: () => ({
-        newMethod: ''
+        newMethod: '',
+        placeholder: '',
+        disableAddition: false,
+        error: ''
     }),
     props: {
         brewMethods: Array
     },
+    watch: {
+        brewMethods() {
+            if (this.brewMethods.length < 10) {
+                this.placeholder = 'Add new method';
+                this.disableAddition = false;
+            } else {
+                this.placeholder = 'The roulette is full';
+                this.disableAddition = true;
+            }
+        }
+    },
     methods: {
         addMethod() {
+            this.error = '';
+            if (this.brewMethods.includes(this.newMethod)) {
+                this.error = 'Method must be unique';
+                return;
+            }
             const newList = [...this.brewMethods];
             newList.push(this.newMethod);
             this.$emit('update-list', newList);

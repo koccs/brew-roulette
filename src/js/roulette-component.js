@@ -1,7 +1,8 @@
 Vue.component('roulette', {
     template: `
         <section class="roulette">
-            <h2>How to brew your next coffee?</h2>
+            <h2>Let me help you decide</h2>
+            <h2>how to brew your next coffee</h2>
             <button 
                 type="button"
                 class="btn-roll"
@@ -9,31 +10,36 @@ Vue.component('roulette', {
                 @click="roll">
                 Roll
             </button>
-            <div class="method-ring"
-                :style="{
-                    transition: ringTransition,
-                    transform: 'rotate(' + spinDegree + 'deg)'
-                }">
-                <div class="method-ring-item"
-                    v-for="(method, index) in brewMethods"
+            <div class="ring-wrapper">
+                <div class="method-ring"
                     :style="{
-                        transform: 'rotate(' + (360 / brewMethods.length * index) + 'deg)',
-                        backgroundColor: 'rgba(0, 0, 0, 0.' + (index+1) + '5)',
-                        clipPath: clipPathSting
+                        transition: ringTransition,
+                        transform: 'rotate(' + spinDegree + 'deg)'
                     }">
-                    <label :class="{'active': index === rollResult}"
+                    <div class="method-ring-item"
+                        v-for="(method, index) in brewMethods"
                         :style="{
-                            transition: labelTransition
+                            transform: 'rotate(' + (360 / brewMethods.length * index) + 'deg)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.' + (index) + '5)',
+                            clipPath: clipPathSting
                         }">
-                        {{method}}
-                    </label>
+                        <label :class="{'active': index === rollResult}"
+                            :style="{
+                                transition: labelTransition
+                            }">
+                            {{method}}
+                        </label>
+                    </div>
                 </div>
+                <div class="result-marker"
+                    :class="{'active': rollInProgress}"></div>
             </div>
         </section>
     `,
     data: () => ({
         rollDisabled: false,
         rollResult: -1,
+        rollInProgress: false,
         spinDegree: 0,
         clipPathSting: '',
         ringTransition: 'transform 3s ease-in-out',
@@ -75,18 +81,19 @@ Vue.component('roulette', {
             let rollResult;
             this.rollDisabled = true;
             this.resetState();
+            this.rollInProgress = true;
 
             setTimeout(() => {
-                rollResult = Math.floor(Math.random() * (this.brewMethods.length));
+                this.rollResult = Math.floor(Math.random() * (this.brewMethods.length));
                 this.ringTransition = 'transform 3s ease-in-out';
-                this.spinDegree = 1080 - 360 / this.brewMethods.length * rollResult;
+                this.labelTransition = 'all .2s ease-out 3s';
+                this.spinDegree = 1080 - 360 / this.brewMethods.length * this.rollResult;
             }, 100);
 
             setTimeout(() => {
-                this.labelTransition = 'all .2s ease-out';
-                this.rollResult = rollResult;
                 this.rollDisabled = false;
-            }, 3100);
+                this.rollInProgress = false;
+            }, 3000);
         }
     }
 });

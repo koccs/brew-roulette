@@ -3,3 +3,48 @@ section.list-editor {
   flex-direction: column;
   align-items: center;
 }
+
+.method-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  width: 75%;
+}
+
+.method-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+.method-list-item + .method-list-item {
+  margin-top: 0.5rem;
+}
+
+.new-method {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.method-error {
+  color: var(--red-800);
+  font-weight: 600;
+  align-self: flex-start;
+}

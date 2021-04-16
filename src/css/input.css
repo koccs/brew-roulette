@@ -1,0 +1,32 @@
+input {
+  box-sizing: border-box;
+  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid var(--orange-700);
+  background: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.5)
+  );
+}
+
+input.error {
+  border: 2px solid var(--red-600);
+}
+
+input + button {
+  margin-left: 0.5rem;
+}
+
+input:disabled {
+  cursor: not-allowed;
+  background: var(--gray-400);
+  border: solid 1px var(--gray-700);
+}
+
+::placeholder {
+    color: var(--gray-700);
+}
