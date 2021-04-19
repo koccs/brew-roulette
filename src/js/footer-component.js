@@ -2,7 +2,7 @@ Vue.component('bottom', {
     template: `
         <footer>
             <div>
-                <a href="https://github.com/koccs" 
+                <a href="https://github.com/koccs/brew-roulette" 
                     target="_blank"
                     tabindex="0">
                     <i class="fab fa-github-square"></i>
