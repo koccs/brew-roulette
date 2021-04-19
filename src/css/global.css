@@ -14,3 +14,14 @@ body {
   font-family: "Raleway", sans-serif;
   color: var(--orange-900);
 }
+
+h1,
+h2 {
+  text-align: center;
+}
+
+@media screen and (max-width: 62.5rem) {
+  html {
+    font-size: 14px;
+  }
+}
