@@ -9,6 +9,7 @@ Vue.component('list-editor', {
                     <label>{{method}}</label>
                     <button type="button"
                         class="btn-icon"
+                        :disabled="brewMethods.length <= 2"
                         @click="removeMethod(method)">
                         <i class="far fa-trash-alt"></i>
                     </button>

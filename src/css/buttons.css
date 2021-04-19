@@ -36,3 +36,9 @@ button:disabled {
   color: var(--yellow-700);
   transform: scale(1.2);
 }
+
+.btn-icon:disabled {
+  background: none;
+  border: none;
+  color: var(--gray-500);
+}
