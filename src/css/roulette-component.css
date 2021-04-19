@@ -78,7 +78,7 @@ section.roulette {
   top: calc(50% - 0.9rem);
   right: calc(-1.8rem);
   border: 1rem solid transparent;
-  border-right: 2.2rem solid var(--red-500);
+  border-right: 2.2rem solid var(--red-600);
   transform-origin: right center;
   transition: all 0.5s ease-out;
   backface-visibility: hidden;

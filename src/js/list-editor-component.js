@@ -59,7 +59,7 @@ Vue.component('list-editor', {
     methods: {
         addMethod() {
             this.error = '';
-            if (this.brewMethods.includes(this.newMethod)) {
+            if (this.brewMethods.map((m) => m.replaceAll(' ', '').toLowerCase()).includes(this.newMethod.replaceAll(' ', '').toLowerCase())) {
                 this.error = 'Method must be unique';
                 return;
             }
